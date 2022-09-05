@@ -1,0 +1,265 @@
+
+```{r echo=FALSE}
+knitr::opts_chunk$set(out.width="80%", fig.pos = "!ht", out.extra = "", message = F,warning = F,echo=FALSE)
+```
+
+```{r}
+pacman::p_load(dplyr,ggplot2,sjPlot,sjlabelled,sjmisc)
+```
+
+
+# La democracia según los ciudadnos: comparación de la opinion publica de Chile y Suecia 
+
+
+Esta apartado explora la opinión publica de los adultos de ambos países sobre 3 temas relativos a las vivencias democráticas. En particular compararemos la evaluación de los ciudadanos sobre sus democracias, intentaremos contrastar sus valores democráticos y su relación con la participación democrática. 
+
+Para realizar estas comparaciones se utiliza la encuesta internacional de valores, utilizando la información longitudinal disponible para Chile y Suecia entre 1989 y 2019. Para este analisis se cuenta con 9918 casos de ciudadanos de ambos países para las distintas olas de este estudio. En el caso de Chile se cuenta con el periodo completo, mientras que para los datos suecos solo se cuenta con las olas desde 1994 y el 2014
+
+
+```{r}
+library(haven)
+wvs_trend <- read_sav("input/data/original/WVS_Trend_v2_0.sav")
+
+
+#sjlabelled::get_labels(wvs_trend)
+
+```
+
+```{r}
+wvs_trend_chsz=
+  wvs_trend %>%  dplyr::filter(S003==152 | S003==752 ) %>% 
+                 dplyr::select(S002,S003,E027,E110,E117,E120,E221B,E235,E069_07)
+
+#find_var(data = wvs_trend_chsz,"demo")
+
+#sjPlot::view_df(wvs_trend_chsz,show.frq = T,show.prc = T,max.len = 300)
+
+
+
+```
+
+
+## Opinion sobre su democracia
+
+
+> Satisfacción con el desempeño de la democraica E110
+
+
+```{r}
+#
+matris = wvs_trend_chsz %>% filter(!is.na(E117)) %>% 
+  mutate(part_efect=case_when(E117==1~1,TRUE~0)) %>%
+  group_by( S003,S002) %>% 
+  summarise("Satisfecho"=mean(part_efect,na.rm = T)*100 ) 
+
+matris$S003 =matris$S003 %>%  as.character()
+
+matris = matris %>% mutate(S003=case_when(S003==152~"Chile",TRUE~"Suecia"))
+
+
+matris = matris %>% mutate(S002_ch=case_when(S002 == 1 ~ "1981-1984",S002 ==2~  "1989-1993", S002 ==3 ~ "1994-1998",S002 ==4 ~ "1999-2004",S002 ==5 ~ "2005-2009",S002 ==6 ~ "2010-2014",S002 ==7 ~ "2017-2019"))
+
+matris= tidyr::pivot_longer(matris, cols=c("Satisfecho"),names_to="tipo_part") 
+
+
+
+matris %>% ggplot(aes(x=S002_ch,y=value,group=S003)) + geom_line(aes(color=S003)) + geom_point(aes(color=S003)) + facet_wrap(vars(tipo_part),ncol=1) + ylim(0,100)  + xlab("Años") + ylab("Porcentaje")  + scale_color_discrete("País") + theme_minimal() 
+
+```
+
+> Confianza en el gobierno E069_11
+
+> Confianza en el parlamento  E069_07
+
+
+
+```{r}
+
+
+#
+matris = wvs_trend_chsz %>% filter(!is.na(E069_07)) %>% 
+  mutate(part_efect=case_when(E069_07==4~1,TRUE~0)) %>%
+  group_by( S003,S002) %>% 
+  summarise("Nada de confianza"=mean(part_efect,na.rm = T)*100 ) 
+
+matris$S003 =matris$S003 %>%  as.character()
+
+matris = matris %>% mutate(S003=case_when(S003==152~"Chile",TRUE~"Suecia"))
+
+
+matris = matris %>% mutate(S002_ch=case_when(S002 == 1 ~ "1981-1984",S002 ==2~  "1989-1993", S002 ==3 ~ "1994-1998",S002 ==4 ~ "1999-2004",S002 ==5 ~ "2005-2009",S002 ==6 ~ "2010-2014",S002 ==7 ~ "2017-2019"))
+
+matris= tidyr::pivot_longer(matris, cols=c("Nada de confianza"),names_to="tipo_part") 
+
+
+
+matris %>% ggplot(aes(x=S002_ch,y=value,group=S003)) + geom_line(aes(color=S003)) + geom_point(aes(color=S003)) + facet_wrap(vars(tipo_part),ncol=1) + ylim(0,100)  + xlab("Años") + ylab("Porcentaje")  + scale_color_discrete("País") + theme_minimal() 
+
+
+```
+
+
+
+## Valores democraticos
+
+> prioridad nacionales  C002
+
+
+```{r}
+
+
+#
+matris = wvs_trend_chsz %>% filter(!is.na(E069_07)) %>% 
+  mutate(part_efect=case_when(E069_07==1~1,TRUE~0)) %>%
+  group_by( S003,S002) %>% 
+  summarise("De acuerdo"=mean(part_efect,na.rm = T)*100 ) 
+
+matris$S003 =matris$S003 %>%  as.character()
+
+matris = matris %>% mutate(S003=case_when(S003==152~"Chile",TRUE~"Suecia"))
+
+
+matris = matris %>% mutate(S002_ch=case_when(S002 == 1 ~ "1981-1984",S002 ==2~  "1989-1993", S002 ==3 ~ "1994-1998",S002 ==4 ~ "1999-2004",S002 ==5 ~ "2005-2009",S002 ==6 ~ "2010-2014",S002 ==7 ~ "2017-2019"))
+
+matris= tidyr::pivot_longer(matris, cols=c("De acuerdo"),names_to="tipo_part") 
+
+
+
+matris %>% ggplot(aes(x=S002_ch,y=value,group=S003)) + geom_line(aes(color=S003)) + geom_point(aes(color=S003)) + facet_wrap(vars(tipo_part),ncol=1) + ylim(0,100)  + xlab("Años") + ylab("Porcentaje")  + scale_color_discrete("País") + theme_minimal() 
+
+
+```
+
+
+
+## Participación en Adultos
+
+```{r}
+
+
+
+olas=sjlabelled::get_labels(wvs_trend_chsz$S002) %>% as.vector()
+
+
+
+
+#
+matris = wvs_trend_chsz %>% filter(!is.na(E027)) %>% 
+  mutate(part_efect=case_when(E027==1~1,TRUE~0),
+         part_pos=case_when(E027==2~ 1,TRUE~0),
+         part_neg=case_when(E027==3~1,TRUE~0)) %>%
+  group_by( S003,S002) %>% 
+  summarise("Ha participado"=mean(part_efect,na.rm = T)*100,
+             "Participaría"=mean(part_pos,na.rm = T)*100,
+            "Nunca Participaría"=mean(part_neg,na.rm = T)*100 ) 
+
+matris$S003 =matris$S003 %>%  as.character()
+
+matris = matris %>% mutate(S003=case_when(S003==152~"Chile",TRUE~"Suecia"))
+
+
+matris = matris %>% mutate(S002_ch=case_when(S002 == 1 ~ "1981-1984",S002 ==2~  "1989-1993", S002 ==3 ~ "1994-1998",S002 ==4 ~ "1999-2004",S002 ==5 ~ "2005-2009",S002 ==6 ~ "2010-2014",S002 ==7 ~ "2017-2019"))
+
+matris= tidyr::pivot_longer(matris, cols=c("Ha participado", "Participaría","Nunca Participaría"),names_to="tipo_part") 
+
+
+
+matris %>% ggplot(aes(x=S002_ch,y=value,group=S003)) + geom_line(aes(color=S003)) + geom_point(aes(color=S003)) + facet_wrap(vars(tipo_part),ncol=1) + ylim(0,100)  + xlab("Años") + ylab("Porcentaje")  + scale_color_discrete("País") + theme_minimal() 
+
+
+
+
+```
+320 E027 Acción política: asistencia a manifestaciones lícitas/pacíficas
+397 E110 Satisfacción con el desarrollo de la democracia
+405 E117 Sistema político: Tener un sistema político democrático
+408 E120 En democracia, el sistema económico funciona mal
+436 E221B Acción política realizada recientemente: Asistir a manifestaciones pacíficas/lícitas
+449 E235 Importancia de la democracia
+
+
+Sobre pariticpación politica chile tien euna alta manifestacion en el periodo final de la dictadura, luego se calma con la democracia y luego vuelve a crecer desde el 2010 hasta llegar al 2019 
+
+
+
+
+
+
+
+
+
+
+
+
+ La pregunta de satisfacción democracia no esta en la base de datos 
+ 
+```{r}
+
+#wvs_trend_chsz %>%   group_by(S003,S002) %>% summarise(part_manifestaciones=mean(E117,na.rm = T))  %>% ggplot(aes(x=S002,y=part_manifestaciones,group=S003)) + geom_line() + ylim(1,3)
+# como las categorias son ha participado, lo haria y nunca un promedio no es la mejor opcion, se hara un grafico de porcentaje
+
+
+olas=sjlabelled::get_labels(wvs_trend_chsz$S002) %>% as.vector()
+
+
+
+
+#
+matris = wvs_trend_chsz %>% filter(!is.na(E117)) %>% 
+  mutate(satdem=case_when(E117==1|E117==2~1,TRUE~0)) %>%
+  group_by( S003,S002) %>% 
+  summarise(satdem=mean(satdem,na.rm = T)*100) 
+
+matris$S003 =matris$S003 %>%  as.character()
+
+matris = matris %>% mutate(S003=case_when(S003==152~"Chile",TRUE~"Suecia"))
+
+
+matris = matris %>% mutate(S002_ch=case_when(S002 == 1 ~ "1981-1984",S002 ==2~  "1989-1993", S002 ==3 ~ "1994-1998",S002 ==4 ~ "1999-2004",S002 ==5 ~ "2005-2009",S002 ==6 ~ "2010-2014",S002 ==7 ~ "2017-2019"))
+
+matris= tidyr::pivot_longer(matris, cols=c(satdem),names_to="Satisfacción democracia") 
+
+matris %>% ggplot(aes(x=S002_ch,y=value,group=S003)) + geom_line(aes(color=S003)) + geom_point(aes(color=S003)) + facet_wrap(vars('Satisfacción democracia: Un sistema democratico me parece bien'),ncol=3) + ylim(0,100)  + xlab("Años")  + scale_color_discrete("País") + theme_minimal() 
+
+
+```
+
+
+```{r}
+#wvs_trend_chsz %>%   group_by(S003,S002) %>% summarise(part_manifestaciones=mean(E117,na.rm = T))  %>% ggplot(aes(x=S002,y=part_manifestaciones,group=S003)) + geom_line() + ylim(1,3)
+# como las categorias son ha participado, lo haria y nunca un promedio no es la mejor opcion, se hara un grafico de porcentaje
+
+
+olas=sjlabelled::get_labels(wvs_trend_chsz$S002) %>% as.vector()
+
+
+
+
+#
+matris = wvs_trend_chsz %>% filter(!is.na(E117)) %>% 
+  mutate(satdem=case_when(E117==1|E117==2~1,TRUE~0)) %>%
+  group_by( S003,S002) %>% 
+  summarise(satdem=mean(satdem,na.rm = T)*100) 
+
+matris$S003 =matris$S003 %>%  as.character()
+
+matris = matris %>% mutate(S003=case_when(S003==152~"Chile",TRUE~"Suecia"))
+
+
+matris = matris %>% mutate(S002_ch=case_when(S002 == 1 ~ "1981-1984",S002 ==2~  "1989-1993", S002 ==3 ~ "1994-1998",S002 ==4 ~ "1999-2004",S002 ==5 ~ "2005-2009",S002 ==6 ~ "2010-2014",S002 ==7 ~ "2017-2019"))
+
+matris= tidyr::pivot_longer(matris, cols=c(satdem),names_to="Satisfacción democracia") 
+
+matris %>% ggplot(aes(x=S002_ch,y=value,group=S003)) + geom_line(aes(color=S003)) + geom_point(aes(color=S003)) + facet_wrap(vars('Satisfacción democracia: Un sistema democratico me parece bien'),ncol=3) + ylim(0,100)  + xlab("Años")  + scale_color_discrete("País") + theme_minimal() 
+
+
+```
+
+
+
+
+
+
+
+
+ 

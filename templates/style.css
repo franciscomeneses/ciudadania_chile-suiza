@@ -1,0 +1,13 @@
+.correction {
+  background-color: #CCCCFF; /* #FFFFFF if corrections should not be highlighted */
+  border-radius: 4px;
+  padding-right: 4px;
+  padding-left: 4px;
+}
+
+
+
+/* don't use line breaks in the header shown on hover */
+.book-header h1 br {
+  display: none;
+}
