@@ -1,7 +1,7 @@
 # tesisfacsodown
 
 
-[https://franciscomeneses.github.io/ciudadania_chile-suiza/](https://franciscomeneses.github.io/ciudadania_chile-suiza/docs/index.html)
+[https://franciscomeneses.github.io/ciudadania_chile-suiza/](https://franciscomeneses.github.io/ciudadania_chile-suiza/)
 
 
 Plantilla (template) para escritura y publicación de tesis/seminarios/memorias en FACSO UChile en formato pdf/html vía bookdown  (R)
