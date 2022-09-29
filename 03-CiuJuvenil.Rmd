@@ -22,6 +22,8 @@ Para enriquecer la comparación, se hará referencia constante a los elementos d
 
 ## Opinion sobre su democracia
 
+### Satisfacción con la democracia
+
 El siguiente grafico expone la satisfacción con la democracia de los jóvenes de ambos países. En ambos casos se le pregunta respecto a su satisfacción con la democracia de su propio país. La cantidad de categorías de respuesta era la misma en ambas encuestas y los mensajes son bastante similares, aunque solo las categorías extremas son equivalentes.
 
 La satisfacción con la democracia de los jóvenes de ambos países difiere radicalmente, de modo tal que es mucho mayor en Suecia que en Chile. La cantidad de estudiantes nada satisfechos es de 28,2% en Chile y de 2,7% en Suecia. Proporcionalmente hablando, por cada estudiante insatisfecho con la democracia en Suecia hay 10 estudiantes insatisfechos con su democracia en Chile. 
@@ -138,23 +140,19 @@ ggsave(plotsat, file = "output/graph_sat.png",device = "png",width = 30,height =
 ```
 
 ![](output/graph_sat.png)
-
-El que los jóvenes suecos estén más satisfechos con su democracia que los jóvenes chilenos es relativamente consistente con la calidad actual de las democracias en ambos países. Aunque según el índice de la democracia actualmente tanto en Chile como en Suecia existe una administración imparcial, controles gubernamentales y un gobierno representativo, existen diferencias sustanciales en otros aspectos. Contrario al caso Sueco, en Chile no existe una garantía real de los derechos fundamentales, ni tampoco existe un adecuado compromiso con la participación. En el caso Chileno es especialmente deficitario el acceso a la justicia y a los derechos sociales. Es razonable considerar que la ausencia de condiciones adecuadas para el desarrollo de una adecuada vida ciudadana merma la satisfacción con la democracia en el caso chileno, lo cual es consistente con la evidencia que destaca la falta de valoración de la democracia ante la falta de derechos sociales adecuados ().
-
+El que los jóvenes suecos estén más satisfechos con su democracia que los jóvenes chilenos es relativamente consistente con la calidad actual de las democracias en ambos países y con la confianza en las democracias de los adultos de ambos paises. Aunque según el índice de la democracia actualmente tanto en Chile como en Suecia existe una administración imparcial, controles gubernamentales y un gobierno representativo, existen diferencias sustanciales en otros aspectos. Contrario al caso Sueco, en Chile no existe una garantía real de los derechos fundamentales, ni tampoco existe un adecuado compromiso con la participación. En el caso Chileno es especialmente deficitario el acceso a la justicia y a los derechos sociales
 
 
-#### Confianza en sus instituciones democraticas
+
+### Confianza en sus instituciones democraticas
 
 El grafico venidero compara la confianza que poseen los estudiantes de los partidos políticos de sus países. Ambas preguntas tienen cuatro categorías, pero las alternativas no son equivalentes. 
 
 
 En ambos países existen distintos niveles de confianza en los partidos, destacando la mayor confianza que tienen los jóvenes suecos. En Suecia, más de la mitad de los jóvenes confía bastante o mucho en los partidos, mientras que en Chile esto ocurre solo con el 15% de los jóvenes. Consecuentemente existe una gran cantidad de jóvenes chilenos con nada de confianza en los partidos, proporcionalmente hablando, por cada estudiante sueco que no confía en los partidos, en chile hay 6 jóvenes que no lo hacen.
 
-Esto es un problema para chile ya que difícilmente se puede confiar en la democracia y las instituciones democrática, si no se confía en sus principales actores, los partidos. 
-[Consecuencia de la baja confianza en partidos]
+Existe una situación similar respecto a la confianza en el parlamento, pues se observa nuevamente una mayor confianza por parte de los jóvenes suecos. El doble de jóvenes suecos confía en su parlamento en comparación con Chile. La baja confianza de los jovenes chilenos sobre su parlamento es coherente con la disminución de la confianza en el parlamento por parte de los adultos. Esto nos invita a reflexionar sobre el rol de la opinión publica general en la opinión pública de los jóvenes
 
-
-__Political parties__
 
 ```{r}
 
@@ -275,11 +273,6 @@ plotru4<- cowplot::plot_grid(plot_sat,plot_sat_psp, ncol=2)
 ```
 ![](output/plotru4.png)
 
-
-
-
-
-__### Trust in people__
 
 
 ```{r}
@@ -406,8 +399,10 @@ plot_sat_psp <- ggplot(sat, aes(x = 2, y = prop, fill = Alternativas)) +
 plotru6<- cowplot::plot_grid(plot_sat,plot_sat_psp, ncol=2)
 ggsave(plotru6, file = "output/plotru5.png",device = "png",width = 30,height = 20,dpi = "retina",units = "cm")
 
+#![](output/plotru5.png)
+
 ```
-![](output/plotru5.png)
+
 
 
 
@@ -538,12 +533,9 @@ ggsave(plotru2, file = "output/plotru2.png",device = "png",width = 30,height = 2
 ```
 ![](output/plotru2.png)
 
-[Comparar con la aceptación de los partidos en adultos]
 
 
-
-
-__Goverment__ 
+__Confianza en el gobierno__ 
 
 Los siguientes gráficos exponen el nivel de confianza de los jóvenes suecos y chilenos sobre el gobierno y el parlamento.  Pese a las diferencias, se puede observar que la confianza no sobrepasa el 60% en ninguno de los países, existiendo en ambos amplios grupos de jóvenes con baja confianza en las instituciones democráticas.  Aun así, el nivel de confianza en ambas instituciones es distinto en ambos países, existe una mayor confianza en Suecia que en Chile. 
 
@@ -670,9 +662,7 @@ ggsave(plotru, file = "output/plotru.png",device = "png",width = 30,height = 20,
 ![](output/plotru.png)
 
 
-Chile tiene un sistema ejecutivo Suecia tiene un sistema legislativa. Este segundo es un incentivo al acuerdo, mientras que el otro a la competencia (política de la zancadilla de Castells  en texto de red).
-
-__### The courts__
+__Confianza en los tribunales de justicia__
 
 
 Este grafico expone la confianza en los tribunales, desde el punto de vista de los jóvenes de Chile y Suecia. 
@@ -742,7 +732,7 @@ ggsave(plotru3, file = "output/plotru3.png",device = "png",width = 30,height = 2
 
 El grafico nos sugiere nuevamente mayor confianza de los jóvenes suecos en su sistema. La proporción de jóvenes que no confía nada en los jueces de chile es un triple de lo que en Suecia. 
 
-Este resultado es consistente con la evaluación del índice de la democracia. Según este, Chile posee un sistema deficiente en torno a la garantía al derecho a la justicia, destacando la desigualdad de los tribunales.  Existen casos emblemáticos que fueron muy mediáticos en chile que generaron la sensación de parcialidad por parte de los jueces []. 
+Este resultado es consistente con la evaluación del índice de la democracia. Según este, Chile posee un sistema deficiente en torno a la garantía al derecho a la justicia, destacando la desigualdad de los tribunales.
 
 
 
@@ -756,11 +746,9 @@ Este resultado es consistente con la evaluación del índice de la democracia. S
 
 ## Valores democraticos
 
+###  Igualdad de derechos
 
-Uno de los valores democráticos es la igualdad de derecho entre las personas. En el caso de Chile, la igualdad de derechos tiene un rol importante en los planes de Educación cívica y formación ciudadana (). La igualdad de derechos implica la no discriminación por razones arbitrarias como sexo u origen. Al respecto los siguientes gráficos nos muestran la opinión de los jóvenes frente a la igualdad de derecho entre géneros y con los inmigrantes.
-
-
-####  Igualdad de derechos con inmigrantes
+Uno de los valores democráticos es la igualdad de derecho entre las personas. En el caso de Chile, la igualdad de derechos tiene un rol importante en los planes de Educación cívica y formación ciudadana. La igualdad de derechos implica la no discriminación por razones arbitrarias como sexo u origen. Al respecto los siguientes gráficos nos muestran la opinión de los jóvenes frente a la igualdad de derecho entre géneros y con los inmigrantes.
 
 ```{r}
 # paces
@@ -885,8 +873,6 @@ ggsave(plotinm2, file = "output/plotinm2.png",device = "png",width = 30,height =
 Los resultados de ambos gráficos permiten apreciar que no existe una diferencia valórica entre los jóvenes suecos y chilenos respecto a la igualdad de derechos. Más bien los patrones de respuesta son bastante similares. Existen pequeñas diferencias según las cuales en chile los jóvenes son levemente más propensos a justificar la desigualdad de género, mientras los jóvenes de Suecia más propensos a justificar la desigualdad en derechos con los inmigrantes.
 
 
-####  Igualdad de derechos entre generos
-
 ```{r include=FALSE, results='hide'}
 # paces
 
@@ -1002,19 +988,271 @@ ggsave(plotdem, file = "output/plotdem.png",device = "png",width = 30,height = 2
 
 ![](output/plotdem.png)
 
+### Normas del buen ciudadano
+
+Una de las foras más comunes de abordar los valores democráticos es las ideas de buen ciudadano que poseen los jóvenes. Se espera que destaquen cualidades democráticas en los buenos ciudadanos como la disposición a la participación. A continuación, se muestra una comparación de cuantos jóvenes chilenos y suecos consideran que votar y participar en protestas es propio de un buen ciudadano. 
+No existen grandes diferencias sobre la idea de un buen ciudadano entre jóvenes y suecos, en lo que respecta a la participación. La mayoría de los jóvenes suecos como los chilenos considera importante participar en protestas pacíficas y votar para ser un buen ciudadano.
+
+Esta información resulta interesante si se compara con la evaluación de la democracia de ambos países y la opinión pública de sus ciudadanos. Esta imagen de un buen ciudadano que comparten ambos países contrasta con las diferencias en los niveles de participación en ambos países, puesto que chile posee niveles más bien deficientes de participación ciudadana. Además, resulta interesante que los jóvenes de ambos países valoraran en la misma medida las protestas pacíficas, pues los adultos poseen niveles de participación parecidos en la población adulta para estos eventos.
+
+```{r}
+# paces
+data_paces_sat=data_paces %>% select(P17G) %>% as.data.frame
+data_paces_sat <- na.omit(data_paces_sat)
+data_paces_sat$P17G <- factor(data_paces_sat$P17G, levels = c(1,2,3,4), labels = c("
 
 
-### Idea de un buen ciudadano
+  <br>
+  <strong>
+  Nada importante</strong></b>
+  <br>", "
+  <br> 
+  <strong>
+  Algo importante</strong></b>
+  <br>", "
+  <br>
+  <strong>
+  Importante</strong></b>
+  <br>", "
+  <br>
+  <strong>
+  Muy importante</strong></b>
+  <br>"))
+sat <- data_paces_sat %>%
+  group_by("Alternativas"=P17G) %>%
+  summarise(counts = n())
+f_sat<-freq(data_paces_sat$P17G)
+sat$prop<-f_sat[1:4,2]
+sat <- sat %>%
+  arrange(desc(Alternativas)) %>%
+  mutate(
+         lab.ypos = cumsum(prop) - 0.5*prop)
+plot_sat <- ggplot(sat, aes(x = 2, y = prop, fill = Alternativas)) +
+  geom_bar(stat = "identity", color = "white") +
+  coord_polar(theta = "y", start = 1.5)+
+  geom_text(aes(label = format(paste(round(prop,1),"%")), y = lab.ypos), color = "black", size=6) +
+  scale_fill_brewer(palette = "Purples") +
+  theme_void()+
+  xlim(0.5, 2.5) +
+  theme(legend.title = element_text(size=16, face="bold")) +
+  theme(legend.text = element_markdown(colour = "grey20", size =14)) +
+  ggtitle("<span style='font-size:24px'> ¿Cuán importante son los siguientes <br>  comportamiento  para ser un buen ciudadano(a)? <br> 
+          <strong>Participar en protestas pacíficas <br> en contra de las leyes que considera injustas</strong> </span><br><br><br>") +  
+  theme(plot.title = element_markdown(hjust=0),
+       #legend.direction = "horizontal",
+       #legend.position = "bottom",
+#       legend.position=c(1,0),
+#              legend.position = c(.95, .95),
+    legend.justification = c("left"),#, "top"),
+    legend.box.just = "left",
+    legend.margin = margin(6, 6, 6, 6),
+    plot.subtitle = element_markdown(hjust = 0.5),
+       legend.title = element_blank())
+
+
+
+#######################################################
+# psp
+#######################################################
+
+data_psp_sat=data_psp %>% select(sa5) %>% as.data.frame
+data_psp_sat <- na.omit(data_psp_sat)
+#data_psp_sat$sa5 <- factor(data_psp_sat$sa5, levels = c(4,3,2,1), labels = c("
+data_psp_sat$sa5 <- factor(data_psp_sat$sa5, levels = c(1,2,3,4), labels = c("
+  <br>
+  <strong>
+  Not important at all</strong></b>
+  <br>", "
+  <br> 
+  <strong>
+  2 <br> </strong> </b>
+  <br>", "
+  <br>
+  <strong>
+  3 </strong></b>
+  <br>", "
+  <br>
+  <strong>
+  Very important</strong></b>
+  <br>"))
+sat <- data_psp_sat %>%
+  group_by("Alternativas"=sa5) %>%
+  summarise(counts = n())
+f_sat<-freq(data_psp_sat$sa5)
+sat$prop<-f_sat[1:4,2]
+sat <- sat %>%
+  arrange(desc(Alternativas)) %>%
+  mutate(
+         lab.ypos = cumsum(prop) - 0.5*prop)
+plot_sat_psp <- ggplot(sat, aes(x = 2, y = prop, fill = Alternativas)) +
+  geom_bar(stat = "identity", color = "white") +
+  coord_polar(theta = "y", start = 1.5)+
+  geom_text(aes(label = format(paste(round(prop,1),"%")), y = lab.ypos), color = "black", size=6) +
+  scale_fill_brewer(palette = "Purples") +#, 
+                    #guide = guide_legend(reverse = TRUE)) +#,
+                    #direction=-1) +
+  theme_void()+
+  xlim(0.5, 2.5) +
+  theme(legend.title = element_text(size=16, face="bold")) +
+  theme(legend.text = element_markdown(colour = "grey20", size =14)) +
+  ggtitle("<span style='font-size:24px'> How active should people be on political issues? <br> What do you think?  For me it is important to: <br> <strong>  Protest when people are treated unfairly <strong>  </span>
+          ", subtitle="<br><br> <br> <strong>  </strong>  <span style='font-size:24px'>   </span></strong>") +  
+  theme(plot.title = element_markdown(hjust=0.0),
+       #legend.direction = "horizontal",
+       #legend.position = "bottom",
+#       legend.position=c(1,0),
+#              legend.position = c(.95, .95),
+    legend.justification = c("left"),#, "top"),
+    legend.box.just = "left",
+    legend.margin = margin(6, 6, 6, 6),
+    plot.subtitle = element_markdown(hjust = 0.5),
+       legend.title = element_blank())
+
+# Gráfico conjunto
+plotgc3 <- cowplot::plot_grid(plot_sat,plot_sat_psp, ncol=2)
+ggsave(plotgc3, file = "output/plotgc2.png",device = "png",width = 30,height = 20,dpi = "retina",units = "cm")
+
+```
+
+
+
+![](output/plotgc2.png)
+
+
+```{r}
+# paces
+data_paces_sat=data_paces %>% select(P17A) %>% as.data.frame
+data_paces_sat <- na.omit(data_paces_sat)
+data_paces_sat$P17A <- factor(data_paces_sat$P17A, levels = c(1,2,3,4), labels = c("
+
+
+  <br>
+  <strong>
+  Nada importante</strong></b>
+  <br>", "
+  <br> 
+  <strong>
+  Algo importante</strong></b>
+  <br>", "
+  <br>
+  <strong>
+  Importante</strong></b>
+  <br>", "
+  <br>
+  <strong>
+  Muy importante</strong></b>
+  <br>"))
+sat <- data_paces_sat %>%
+  group_by("Alternativas"=P17A) %>%
+  summarise(counts = n())
+f_sat<-freq(data_paces_sat$P17A)
+sat$prop<-f_sat[1:4,2]
+sat <- sat %>%
+  arrange(desc(Alternativas)) %>%
+  mutate(
+         lab.ypos = cumsum(prop) - 0.5*prop)
+plot_sat <- ggplot(sat, aes(x = 2, y = prop, fill = Alternativas)) +
+  geom_bar(stat = "identity", color = "white") +
+  coord_polar(theta = "y", start = 1.5)+
+  geom_text(aes(label = format(paste(round(prop,1),"%")), y = lab.ypos), color = "black", size=6) +
+  scale_fill_brewer(palette = "Purples") +
+  theme_void()+
+  xlim(0.5, 2.5) +
+  theme(legend.title = element_text(size=16, face="bold")) +
+  theme(legend.text = element_markdown(colour = "grey20", size =14)) +
+  ggtitle("<span style='font-size:24px'> ¿Cuán importante son los siguientes <br>  comportamiento  para ser un buen ciudadano(a)? <br> 
+          <strong>Votar en todas las elecciones nacionales</strong> </span><br><br><br>") +  
+  theme(plot.title = element_markdown(hjust=0),
+       #legend.direction = "horizontal",
+       #legend.position = "bottom",
+#       legend.position=c(1,0),
+#              legend.position = c(.95, .95),
+    legend.justification = c("left"),#, "top"),
+    legend.box.just = "left",
+    legend.margin = margin(6, 6, 6, 6),
+    plot.subtitle = element_markdown(hjust = 0.5),
+       legend.title = element_blank())
+
+
+
+#######################################################
+# psp
+#######################################################
+
+data_psp_sat=data_psp %>% select(sa6) %>% as.data.frame
+data_psp_sat <- na.omit(data_psp_sat)
+#data_psp_sat$sa6 <- factor(data_psp_sat$sa6, levels = c(4,3,2,1), labels = c("
+data_psp_sat$sa6 <- factor(data_psp_sat$sa6, levels = c(1,2,3,4), labels = c("
+  <br>
+  <strong>
+  Not important at all</strong></b>
+  <br>", "
+  <br> 
+  <strong>
+  2 <br> </strong> </b>
+  <br>", "
+  <br>
+  <strong>
+  3 </strong></b>
+  <br>", "
+  <br>
+  <strong>
+  Very important</strong></b>
+  <br>"))
+sat <- data_psp_sat %>%
+  group_by("Alternativas"=sa6) %>%
+  summarise(counts = n())
+f_sat<-freq(data_psp_sat$sa6)
+sat$prop<-f_sat[1:4,2]
+sat <- sat %>%
+  arrange(desc(Alternativas)) %>%
+  mutate(
+         lab.ypos = cumsum(prop) - 0.5*prop)
+plot_sat_psp <- ggplot(sat, aes(x = 2, y = prop, fill = Alternativas)) +
+  geom_bar(stat = "identity", color = "white") +
+  coord_polar(theta = "y", start = 1.5)+
+  geom_text(aes(label = format(paste(round(prop,1),"%")), y = lab.ypos), color = "black", size=6) +
+  scale_fill_brewer(palette = "Purples") +#, 
+                    #guide = guide_legend(reverse = TRUE)) +#,
+                    #direction=-1) +
+  theme_void()+
+  xlim(0.5, 2.5) +
+  theme(legend.title = element_text(size=16, face="bold")) +
+  theme(legend.text = element_markdown(colour = "grey20", size =14)) +
+  ggtitle("<span style='font-size:24px'> How active should people be on political issues? <br> What do you think?  For me it is important to: <br> <strong>  Go out and vote when there are elections <strong>  </span>
+          ", subtitle="<br><br> <br> <strong>  </strong>  <span style='font-size:24px'>   </span></strong>") +  
+  theme(plot.title = element_markdown(hjust=0.0),
+       #legend.direction = "horizontal",
+       #legend.position = "bottom",
+#       legend.position=c(1,0),
+#              legend.position = c(.95, .95),
+    legend.justification = c("left"),#, "top"),
+    legend.box.just = "left",
+    legend.margin = margin(6, 6, 6, 6),
+    plot.subtitle = element_markdown(hjust = 0.5),
+       legend.title = element_blank())
+
+# Gráfico conjunto
+plotgc4 <- cowplot::plot_grid(plot_sat,plot_sat_psp, ncol=2)
+ggsave(plotgc4, file = "output/plotgc3.png",device = "png",width = 30,height = 20,dpi = "retina",units = "cm")
+
+```
+
+
+![](output/plotgc3.png)
+
+
 
 
 
 ## Participación
 
-#### Participación en la escuela
+En el presente apartado se expondrá un analisis de la participación política juvenil, comparando las vivencias de los jóvenes suecos y chilenos. Esto respecto a tres tipos de participación política, la participación en las escuelas, la participación en la vida publica y la socialización política con sus cercanos. 
 
 
-__Youth school political participation__
+### Participación en la escuela
 
+Respecto a la participación en la escuela existen diferencias en los tipos de participación, exceptuando la participación en consejos estudiantiles que es similar. En Chile, según lo declarado por los estudiantes, existe una muy mayor proporción de jóvenes que han votado en elecciones escolares sería interesante indagar en las distintas formas de organización estudiantil. Otra diferencia observable es que en Suecia existe una mayor proporción de jóvenes que han participado activamente en reuniones escolares, pero en Chile existe una mayor participación en protestas. En suma, existen diferentes tipos de organización escolar destacando en Chile las votaciones y las protestas, mientras que en Suecia la participación directa en consejos y reuniones estudiantiles. 
 
 __Been a member of the student council__
 
@@ -1231,7 +1469,7 @@ plot_sat_psp <- ggplot(sat, aes(x = 2, y = prop, fill = Alternativas)) +
 
 # Gráfico conjunto
 plottr2<- cowplot::plot_grid(plot_sat,plot_sat_psp, ncol=2)
-ggsave(plottr2, file = "output/plottr2.png",device = "png",width = 30,height = 20,dpi = "retina",units = "cm")
+ggsave(plottr2, file = "output/plottr2.png",width = 30,height = 20,dpi = "retina",units = "cm")
 
 ```
 ![](output/plottr2.png)
@@ -1462,24 +1700,11 @@ ggsave(plottr4, file = "output/plottr4.png",device = "png",width = 30,height = 2
 
 
 
-#### Practicas en la escuela 
-
-Se observa una alta participación democratica en la escuela 
-
-```{r, include=TRUE}
-  iccs_chsw %>% na.omit() %>% group_by(COUNTRY,IS3G16A) %>% summarise(n=n()) %>%  mutate(freq = round(n / sum(n), 3)) %>% ggplot(aes(x=freq, y=as.character(IS3G16A), fill=COUNTRY)) + geom_bar(stat = "identity",position=position_dodge()) + scale_y_discrete(labels=c("Este año",  "Hace más de un año","Nunca")) +ggtitle("Tu Escuela/En la escuela, ¿alguna vez has hecho/Participación activa en un debate organizado")
-```
 
 
-```{r, include=TRUE}
-  iccs_chsw %>% na.omit() %>% group_by(COUNTRY,IS3G16C) %>% summarise(n=n()) %>%  mutate(freq = round(n / sum(n), 3)) %>% ggplot(aes(x=freq, y=as.character(IS3G16C), fill=COUNTRY)) + geom_bar(stat = "identity",position=position_dodge()) + scale_y_discrete(labels=c("Este año",  "Hace más de un año","Nunca")) +ggtitle("En la escuela ¿alguna vez has hecho/Participación activa en un debate organizado")
-```
+### Participación publica
 
-
-
-
-#### Participación publica
-
+En la participación política juvenil en el espacio publico se observa nuevamente distintos tipos de participación y no una diferencia en grados de participación. La similitud es que en ambos países aproximadamente el 38% de los jóvenes ha firmado peticiones para dar su respaldo a una causa. Es notorio que los jóvenes chilenos poseen mayor participación en distintos tipos de protesta contenciosa que busca influir al sistema político desde fuera, ya sea con protestas legales, ilegales u ocupaciones. Por su parte los jóvenes suecos poseen una muy mayor participación en actividades de voluntariado.
 
 __Youth participation__
 
@@ -2070,8 +2295,10 @@ ggsave(plotyp5, file = "output/plotyp5.png",device = "png",width = 30,height = 2
 ![](output/plotyp5.png)
 
 
-#### Socialización politica y discución ciudadana
+### Socialización politica y discución ciudadana
 
+
+A diferencia de los otros tipos de involucramiento y participación política, en la socialización política no se dan tipos de participación, sino que más bien, existe una diferencia general según la cual los jóvenes chilenos conversan más sobre política,  temas sociales y medioambientales. Esta tendencia se da con mayor fuerza al contrastar las conversaciones con los padres. Estos niveles de socialización política familiar hacen sentido si se considera la consistencia entre la opinión publica adulta y juvenil, respecto a la satisfacción y confianza en la democracia.  
 
 
 __Environmental issues__
@@ -2788,21 +3015,4 @@ ggsave(plotcha1, file = "output/plotdiscpar3.png",device = "png",width = 30,heig
 ```
 ![](output/plotdiscpar3.png)
 
-
-
-
->  ICCS
-
-```{r, include=TRUE}
-  iccs_chsw %>% na.omit() %>% group_by(COUNTRY,IS3G14A) %>% summarise(n=n()) %>%  mutate(freq = round(n / sum(n), 3)) %>% ggplot(aes(x=freq, y=as.character(IS3G14A), fill=COUNTRY)) + geom_bar(stat = "identity",position=position_dodge()) + scale_y_discrete(labels=c("Casi nunca",  "Mensual","Semanal" ,"Casi diario")) +ggtitle("Con qué frecuencia hablas con tus padres sobre temas políticos o sociales")
-```
-
-```{r,include=TRUE}
-  iccs_chsw %>% na.omit() %>% group_by(COUNTRY,IS3G14A) %>% summarise(n=n()) %>%  mutate(freq = round(n / sum(n), 3)) %>% ggplot(aes(x=freq, y=as.character(IS3G14A), fill=COUNTRY)) + geom_bar(stat = "identity",position=position_dodge()) + scale_y_discrete(labels=c("Casi nunca",  "Mensual","Semanal" ,"Casi diario")) +ggtitle("Con qué frecuencia hablas con tus amigos sobre temas políticos o sociales")
-```
-
-
-```{r, include=TRUE}
-  iccs_chsw %>% na.omit() %>% group_by(COUNTRY,IS3G14B) %>% summarise(n=n()) %>%  mutate(freq = round(n / sum(n), 3)) %>% ggplot(aes(x=freq, y=as.character(IS3G14B), fill=COUNTRY)) + geom_bar(stat = "identity",position=position_dodge()) + scale_y_discrete(labels=c("Casi nunca",  "Mensual","Semanal" ,"Casi diario")) +ggtitle("Con qué frecuencia ves televisión para informarte sobre noticias nacionales e internacionales")
-```
 
